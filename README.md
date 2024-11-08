@@ -48,10 +48,10 @@ The application uses **TailwindCSS** to ensure a modern and responsive UI, provi
 ## Tech Stack
 
 ### **Frontend:**
-- **React.js**: A powerful JavaScript library for building dynamic user interfaces. It’s used to create the patient and admin dashboards with a smooth, interactive user experience.
-- **TailwindCSS**: A utility-first CSS framework that helps to design responsive and modern UIs without writing custom CSS from scratch. It’s used for styling the frontend.
-- **React Router**: A routing library for React that allows you to handle navigation between the different pages (Admin Dashboard, Patient Dashboard, etc.).
-- **Axios**: A promise-based HTTP client used for making API requests from the frontend to the backend.
+- **React.js**
+- **TailwindCSS**
+- **React Router**
+- **Axios**
 
 ### **Backend:**
 - **Node.js**

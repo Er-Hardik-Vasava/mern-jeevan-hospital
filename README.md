@@ -1,4 +1,4 @@
-# Hospital Management System (MERN Stack)
+# Jeevan Hospital - Hospital Website
 
 ## Overview
 

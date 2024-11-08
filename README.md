@@ -1,4 +1,4 @@
-# Jeevan Hospital - Website
+# Jeevan Hospital - Hospital Website
 
 A **MERN stack-based Hospital Management System** with separate dashboards for **Admin** and **Patient**. Admins can manage users, appointments, and messages, while doctors can view and manage their appointments and patient records. Patients can book appointments and send messages, but only **Admin**  have dedicated dashboards.
 

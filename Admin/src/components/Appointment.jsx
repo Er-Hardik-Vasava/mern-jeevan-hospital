@@ -89,14 +89,14 @@ const Appointment = () => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); 
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 md:p-8">
       <h1 className="text-2xl font-bold mb-4 text-center">All Appointments</h1>
       {loading ? (
         <div className="text-center text-gray-500">Loading appointments...</div>
@@ -109,60 +109,115 @@ const Appointment = () => {
                   key={appointment._id}
                   className="bg-white p-4 shadow-md rounded-lg border border-gray-200"
                 >
-                  {/* Stack appointments in a card format for mobile */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-4">
-                    <div className="font-semibold">Patient Name:</div>
-                    <div>{`${appointment.firstName} ${appointment.lastName}`}</div>
+                  {/* Tablet and Desktop Layout (Table) */}
+                  <div className="hidden sm:block">
+                    <table className="min-w-full table-auto">
+                      <thead>
+                        <tr className="bg-gray-100">
+                          <th className="px-4 py-2 text-left font-semibold">Patient Name</th>
+                          <th className="px-4 py-2 text-left font-semibold">Appointment Date</th>
+                          <th className="px-4 py-2 text-left font-semibold">Doctor Name</th>
+                          <th className="px-4 py-2 text-left font-semibold">Department</th>
+                          <th className="px-4 py-2 text-left font-semibold">Status</th>
+                          <th className="px-4 py-2 text-left font-semibold">Visited Before</th>
+                          <th className="px-4 py-2 text-left font-semibold">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="px-4 py-2">{`${appointment.firstName} ${appointment.lastName}`}</td>
+                          <td className="px-4 py-2">{formatDate(appointment.appointment_date)}</td>
+                          <td className="px-4 py-2">{appointment.doctorName}</td>
+                          <td className="px-4 py-2">{appointment.department || "N/A"}</td>
+                          <td className="px-4 py-2">
+                            <select
+                              className={`border rounded-md p-2 w-full sm:w-auto ${
+                                appointment.status === "Pending"
+                                  ? "bg-yellow-200"
+                                  : appointment.status === "Accepted"
+                                  ? "bg-green-200"
+                                  : "bg-red-200"
+                              }`}
+                              value={appointment.status}
+                              onChange={(e) =>
+                                handleUpdateStatus(appointment._id, e.target.value)
+                              }
+                            >
+                              <option value="Pending">Pending</option>
+                              <option value="Accepted">Accepted</option>
+                              <option value="Rejected">Rejected</option>
+                            </select>
+                          </td>
+                          <td className="px-4 py-2">{appointment.hasVisited ? "True" : "False"}</td>
+                          <td className="px-4 py-2">
+                            <button
+                              className="text-red-500 py-1 px-3 border rounded-md hover:bg-red-200"
+                              onClick={() => handleDeleteAppointment(appointment._id)}
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
 
-                    <div className="font-semibold">Appointment Date:</div>
-                    <div>{formatDate(appointment.appointment_date)}</div>
+                  {/* Mobile-Friendly Stacked Layout */}
+                  <div className="block sm:hidden">
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-1 gap-2">
+                        <div className="font-semibold">Patient Name:</div>
+                        <div>{`${appointment.firstName} ${appointment.lastName}`}</div>
 
-                    <div className="font-semibold">Doctor Name:</div>
-                    <div>{appointment.doctorName}</div>
+                        <div className="font-semibold">Appointment Date:</div>
+                        <div>{formatDate(appointment.appointment_date)}</div>
 
-                    <div className="font-semibold">Department:</div>
-                    <div>{appointment.department || "N/A"}</div>
+                        <div className="font-semibold">Doctor Name:</div>
+                        <div>{appointment.doctorName}</div>
 
-                    <div className="font-semibold">Status:</div>
-                    <div>
-                      <select
-                        className={`border rounded-md p-1 w-full sm:w-auto ${
-                          appointment.status === "Pending"
-                            ? "bg-yellow-200"
-                            : appointment.status === "Accepted"
-                            ? "bg-green-200"
-                            : "bg-red-200"
-                        }`}
-                        value={appointment.status}
-                        onChange={(e) =>
-                          handleUpdateStatus(appointment._id, e.target.value)
-                        }
-                      >
-                        <option value="Pending">Pending</option>
-                        <option value="Accepted">Accepted</option>
-                        <option value="Rejected">Rejected</option>
-                      </select>
-                    </div>
+                        <div className="font-semibold">Department:</div>
+                        <div>{appointment.department || "N/A"}</div>
 
-                    <div className="font-semibold">Visited Before:</div>
-                    <div>{appointment.hasVisited ? "True" : "False"}</div>
+                        <div className="font-semibold">Status:</div>
+                        <div>
+                          <select
+                            className={`border rounded-md p-2 w-full sm:w-auto ${
+                              appointment.status === "Pending"
+                                ? "bg-yellow-200"
+                                : appointment.status === "Accepted"
+                                ? "bg-green-200"
+                                : "bg-red-200"
+                            }`}
+                            value={appointment.status}
+                            onChange={(e) =>
+                              handleUpdateStatus(appointment._id, e.target.value)
+                            }
+                          >
+                            <option value="Pending">Pending</option>
+                            <option value="Accepted">Accepted</option>
+                            <option value="Rejected">Rejected</option>
+                          </select>
+                        </div>
 
-                    <div className="flex justify-start sm:justify-center gap-2">
-                      <button
-                        className="text-red-500"
-                        onClick={() => handleDeleteAppointment(appointment._id)}
-                      >
-                        Delete
-                      </button>
+                        <div className="font-semibold">Visited Before:</div>
+                        <div>{appointment.hasVisited ? "True" : "False"}</div>
+
+                        <div className="flex justify-start sm:justify-center gap-2">
+                          <button
+                            className="text-red-500 py-1 px-3 border rounded-md hover:bg-red-200"
+                            onClick={() => handleDeleteAppointment(appointment._id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="text-center text-gray-500 h-screen mt-4">
-              No Appointments Found!
-            </div>
+            <div className="text-center text-gray-500 mt-4">No Appointments Found!</div>
           )}
         </div>
       )}

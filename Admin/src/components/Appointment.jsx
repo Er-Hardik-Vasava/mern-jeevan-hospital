@@ -90,42 +90,43 @@ const Appointment = () => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+    const month = String(date.getMonth() + 1).padStart(2, '0'); 
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
 
   return (
-    <div className="p-4 h-screen">
+    <div className="p-4">
       <h1 className="text-2xl font-bold mb-4 text-center">All Appointments</h1>
       {loading ? (
         <div className="text-center text-gray-500">Loading appointments...</div>
       ) : (
         <div className="overflow-x-auto">
           {appointments.length > 0 ? (
-            <div className="shadow-md rounded-lg overflow-hidden">
-              <div className="bg-gray-100 p-4 grid grid-cols-1 md:grid-cols-7 font-semibold">
-                <div>Patient Name</div>
-                <div>Appointment Date</div>
-                <div>Doctor Name</div>
-                <div>Department</div>
-                <div>Status</div>
-                <div>Visited Before</div>
-                <div>Actions</div>
-              </div>
-              <div>
-                {appointments.map((appointment) => (
-                  <div
-                    key={appointment._id}
-                    className="grid grid-cols-1 md:grid-cols-7 p-4 border-b border-gray-200 last:border-b-0"
-                  >
+            <div className="space-y-4">
+              {appointments.map((appointment) => (
+                <div
+                  key={appointment._id}
+                  className="bg-white p-4 shadow-md rounded-lg border border-gray-200"
+                >
+                  {/* Stack appointments in a card format for mobile */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-4">
+                    <div className="font-semibold">Patient Name:</div>
                     <div>{`${appointment.firstName} ${appointment.lastName}`}</div>
+
+                    <div className="font-semibold">Appointment Date:</div>
                     <div>{formatDate(appointment.appointment_date)}</div>
+
+                    <div className="font-semibold">Doctor Name:</div>
                     <div>{appointment.doctorName}</div>
+
+                    <div className="font-semibold">Department:</div>
                     <div>{appointment.department || "N/A"}</div>
+
+                    <div className="font-semibold">Status:</div>
                     <div>
                       <select
-                        className={`border rounded-md p-1 ${
+                        className={`border rounded-md p-1 w-full sm:w-auto ${
                           appointment.status === "Pending"
                             ? "bg-yellow-200"
                             : appointment.status === "Accepted"
@@ -142,10 +143,11 @@ const Appointment = () => {
                         <option value="Rejected">Rejected</option>
                       </select>
                     </div>
-                    <div>
-                      {appointment.hasVisited ? "True" : "False"}
-                    </div>
-                    <div>
+
+                    <div className="font-semibold">Visited Before:</div>
+                    <div>{appointment.hasVisited ? "True" : "False"}</div>
+
+                    <div className="flex justify-start sm:justify-center gap-2">
                       <button
                         className="text-red-500"
                         onClick={() => handleDeleteAppointment(appointment._id)}
@@ -154,8 +156,8 @@ const Appointment = () => {
                       </button>
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           ) : (
             <div className="text-center text-gray-500 h-screen mt-4">

@@ -36,7 +36,7 @@ const Contact = () => {
         toast.success("Message sent successfully!");
       }
 
-      // Clear form fields
+      
       setFirstName("");
       setLastName("");
       setEmail("");

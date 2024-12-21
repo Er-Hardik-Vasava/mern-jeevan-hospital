@@ -26,7 +26,7 @@ const DoctorRegistration = () => {
 
     const doctorRegistration = async (e) => {
         e.preventDefault();
-        setLoading(true); // Start loading
+        setLoading(true); 
         try {
             const { data } = await axios.post(
                 "http://localhost:3000/api/v1/user/doctor/add",
@@ -35,11 +35,11 @@ const DoctorRegistration = () => {
             );
             toast.success(data.message);
             setIsAuthenticated(true);
-            navigate('/doctor'); // Redirect after registration
+            navigate('/doctor'); 
         } catch (error) {
             toast.error(error.response?.data?.message || "Registration failed. Please try again.");
         } finally {
-            setLoading(false); // Stop loading
+            setLoading(false); 
         }
     };
 
@@ -100,7 +100,7 @@ const DoctorRegistration = () => {
 
                 <button
                     type="submit"
-                    disabled={loading} // Disable button if loading
+                    disabled={loading} 
                     className={`bg-blue-500 text-white rounded py-2 px-4 hover:bg-blue-600 transition duration-200 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
                     {loading ? 'Registering...' : 'Register Doctor'}

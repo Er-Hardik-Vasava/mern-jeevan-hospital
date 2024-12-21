@@ -56,14 +56,16 @@ const HeroSection = () => {
           </div>
         </section>
 
-        {/* Meet Our Team Section */}
         <section className="mt-10 bg-white p-6 rounded shadow">
           <h2 className="text-3xl font-bold text-center">Meet Our Team</h2>
           <div className="p-4">
             {doctorDetails.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {doctorDetails.map((doctor) => (
-                  <div key={doctor._id} className="bg-white shadow-md rounded-lg p-4">
+                  <div
+                    key={doctor._id}
+                    className="bg-white shadow-md rounded-lg p-4"
+                  >
                     <h2 className="text-xl font-bold mb-2">
                       {doctor.doctorName}
                     </h2>
@@ -90,7 +92,6 @@ const HeroSection = () => {
           </div>
         </section>
 
-        {/* Appointment Section */}
         <section className="mt-10 bg-white p-6 rounded shadow">
           <h2 className="text-3xl font-bold text-center">
             Make an Appointment
@@ -107,12 +108,13 @@ const HeroSection = () => {
                 Book Appointment
               </Link>
             ) : (
-              <p className="text-gray-500">You need to log in to make an appointment.</p>
+              <p className="text-gray-500">
+                You need to log in to make an appointment.
+              </p>
             )}
           </div>
         </section>
 
-        {/* Other Sections... */}
         <section className="mt-10">
           <h2 className="text-3xl font-bold text-center">Our Services</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
@@ -123,7 +125,8 @@ const HeroSection = () => {
             <div className="border p-4 rounded shadow-lg hover:shadow-xl transition duration-300">
               <h3 className="font-semibold text-xl">Maternity Care</h3>
               <p>
-                Comprehensive care for mothers before, during, and after childbirth.
+                Comprehensive care for mothers before, during, and after
+                childbirth.
               </p>
             </div>
             <div className="border p-4 rounded shadow-lg hover:shadow-xl transition duration-300">
@@ -133,7 +136,6 @@ const HeroSection = () => {
           </div>
         </section>
 
-        {/* About Us Section */}
         <section className="mt-10 bg-white p-6 rounded shadow">
           <h2 className="text-3xl font-bold text-center">About Us</h2>
           <p className="mt-4 text-center">
@@ -142,24 +144,26 @@ const HeroSection = () => {
           </p>
         </section>
 
-        {/* Testimonials Section */}
         <section className="mt-10 bg-white p-6 rounded shadow">
           <h2 className="text-3xl font-bold text-center">Testimonials</h2>
           <div className="mt-4 space-y-4">
             <blockquote className="border-l-4 border-blue-500 pl-4 italic">
-              "The care I received at Jeevan Hospital was outstanding! Highly recommend."
+              "The care I received at Jeevan Hospital was outstanding! Highly
+              recommend."
               <footer className="mt-2">— Jane Doe</footer>
             </blockquote>
             <blockquote className="border-l-4 border-blue-500 pl-4 italic">
-              "Wonderful staff and excellent facilities. Thank you for everything!"
+              "Wonderful staff and excellent facilities. Thank you for
+              everything!"
               <footer className="mt-2">— John Smith</footer>
             </blockquote>
           </div>
         </section>
 
-        {/* FAQ Section */}
         <section className="mt-10 bg-white p-6 rounded shadow">
-          <h2 className="text-3xl font-bold text-center">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold text-center">
+            Frequently Asked Questions
+          </h2>
           <div className="mt-4 space-y-4">
             <div>
               <h3 className="font-semibold">What are your visiting hours?</h3>
@@ -168,28 +172,36 @@ const HeroSection = () => {
             <div>
               <h3 className="font-semibold">Do you accept insurance?</h3>
               <p>
-                Yes, we accept most major insurance plans. Please contact us for details.
+                Yes, we accept most major insurance plans. Please contact us for
+                details.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Health Tips Section */}
         <section className="mt-10 bg-gray-50 p-6 rounded shadow">
           <h2 className="text-3xl font-bold text-center">Health Tips</h2>
           <ul className="mt-4 list-disc list-inside">
             <li>Stay hydrated: Drink plenty of water throughout the day.</li>
-            <li>Eat a balanced diet: Include a variety of fruits, vegetables, and whole grains.</li>
-            <li>Exercise regularly: Aim for at least 30 minutes of physical activity most days.</li>
-            <li>Get enough sleep: Aim for 7-9 hours of quality sleep each night.</li>
+            <li>
+              Eat a balanced diet: Include a variety of fruits, vegetables, and
+              whole grains.
+            </li>
+            <li>
+              Exercise regularly: Aim for at least 30 minutes of physical
+              activity most days.
+            </li>
+            <li>
+              Get enough sleep: Aim for 7-9 hours of quality sleep each night.
+            </li>
           </ul>
         </section>
 
-        {/* Our Facilities Section */}
         <section className="mt-10 bg-white p-6 rounded shadow">
           <h2 className="text-3xl font-bold text-center">Our Facilities</h2>
           <p className="mt-4 text-center">
-            Our hospital is equipped with state-of-the-art facilities to ensure the best possible care.
+            Our hospital is equipped with state-of-the-art facilities to ensure
+            the best possible care.
           </p>
           <ul className="mt-4 list-disc list-inside">
             <li>Modern patient rooms</li>

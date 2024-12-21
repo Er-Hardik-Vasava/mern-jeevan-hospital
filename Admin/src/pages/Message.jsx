@@ -6,19 +6,19 @@ import { Navigate } from "react-router-dom";
 
 const Message = () => {
   const { isAuthenticated } = useContext(AuthContext);
-  const [messages, setMessages] = useState([]); // State for messages
-  const [loading, setLoading] = useState(true); // Loading state
+  const [messages, setMessages] = useState([]); 
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchMessageDetails = async () => {
-      setLoading(true); // Start loading
+      setLoading(true); 
       try {
         const response = await axios.get(
           "http://localhost:3000/api/v1/message/get-message",
           { withCredentials: true }
         );
         if (response.data.success) {
-          setMessages(response.data.data); // Set the fetched messages
+          setMessages(response.data.data); 
         } else {
           toast.error("Failed to fetch messages.");
         }
@@ -26,24 +26,24 @@ const Message = () => {
         const errorMessage =
           error.response?.data?.message || "An error occurred.";
         toast.error(errorMessage);
-        setMessages([]); // Reset messages on error
+        setMessages([]); 
       } finally {
-        setLoading(false); // End loading
+        setLoading(false); 
       }
     };
 
-    // Fetch messages if authenticated
+    
     if (isAuthenticated) {
       fetchMessageDetails();
     }
   }, [isAuthenticated]);
 
-  // Redirect to login if not authenticated
+
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
 
-  // Render loading state or messages
+
   if (loading) {
     return <div className="flex justify-center items-center h-screen text-lg">Loading...</div>; // Loading indicator
   }

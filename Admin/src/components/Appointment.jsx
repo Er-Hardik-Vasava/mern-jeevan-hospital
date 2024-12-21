@@ -9,7 +9,6 @@ const Appointment = () => {
   const [loading, setLoading] = useState(true);
   const { isAuthenticated } = useContext(AuthContext);
 
-  // Redirect if not authenticated
   if (!isAuthenticated) {
     return <Navigate to={"/login"} />;
   }
@@ -73,7 +72,9 @@ const Appointment = () => {
       );
       if (data.success) {
         setAppointments((prevAppointments) =>
-          prevAppointments.filter((appointment) => appointment._id !== appointmentId)
+          prevAppointments.filter(
+            (appointment) => appointment._id !== appointmentId
+          )
         );
         toast.success("Appointment deleted successfully");
       } else {
@@ -109,26 +110,45 @@ const Appointment = () => {
                   key={appointment._id}
                   className="bg-white p-4 shadow-md rounded-lg border border-gray-200"
                 >
-                  {/* Tablet and Desktop Layout (Table) */}
                   <div className="hidden sm:block">
                     <table className="min-w-full table-auto">
                       <thead>
                         <tr className="bg-gray-100">
-                          <th className="px-4 py-2 text-left font-semibold">Patient Name</th>
-                          <th className="px-4 py-2 text-left font-semibold">Appointment Date</th>
-                          <th className="px-4 py-2 text-left font-semibold">Doctor Name</th>
-                          <th className="px-4 py-2 text-left font-semibold">Department</th>
-                          <th className="px-4 py-2 text-left font-semibold">Status</th>
-                          <th className="px-4 py-2 text-left font-semibold">Visited Before</th>
-                          <th className="px-4 py-2 text-left font-semibold">Actions</th>
+                          <th className="px-4 py-2 text-left font-semibold">
+                            Patient Name
+                          </th>
+                          <th className="px-4 py-2 text-left font-semibold">
+                            Appointment Date
+                          </th>
+                          <th className="px-4 py-2 text-left font-semibold">
+                            Doctor Name
+                          </th>
+                          <th className="px-4 py-2 text-left font-semibold">
+                            Department
+                          </th>
+                          <th className="px-4 py-2 text-left font-semibold">
+                            Status
+                          </th>
+                          <th className="px-4 py-2 text-left font-semibold">
+                            Visited Before
+                          </th>
+                          <th className="px-4 py-2 text-left font-semibold">
+                            Actions
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td className="px-4 py-2">{`${appointment.firstName} ${appointment.lastName}`}</td>
-                          <td className="px-4 py-2">{formatDate(appointment.appointment_date)}</td>
-                          <td className="px-4 py-2">{appointment.doctorName}</td>
-                          <td className="px-4 py-2">{appointment.department || "N/A"}</td>
+                          <td className="px-4 py-2">
+                            {formatDate(appointment.appointment_date)}
+                          </td>
+                          <td className="px-4 py-2">
+                            {appointment.doctorName}
+                          </td>
+                          <td className="px-4 py-2">
+                            {appointment.department || "N/A"}
+                          </td>
                           <td className="px-4 py-2">
                             <select
                               className={`border rounded-md p-2 w-full sm:w-auto ${
@@ -140,7 +160,10 @@ const Appointment = () => {
                               }`}
                               value={appointment.status}
                               onChange={(e) =>
-                                handleUpdateStatus(appointment._id, e.target.value)
+                                handleUpdateStatus(
+                                  appointment._id,
+                                  e.target.value
+                                )
                               }
                             >
                               <option value="Pending">Pending</option>
@@ -148,11 +171,15 @@ const Appointment = () => {
                               <option value="Rejected">Rejected</option>
                             </select>
                           </td>
-                          <td className="px-4 py-2">{appointment.hasVisited ? "True" : "False"}</td>
+                          <td className="px-4 py-2">
+                            {appointment.hasVisited ? "True" : "False"}
+                          </td>
                           <td className="px-4 py-2">
                             <button
                               className="text-red-500 py-1 px-3 border rounded-md hover:bg-red-200"
-                              onClick={() => handleDeleteAppointment(appointment._id)}
+                              onClick={() =>
+                                handleDeleteAppointment(appointment._id)
+                              }
                             >
                               Delete
                             </button>
@@ -162,7 +189,6 @@ const Appointment = () => {
                     </table>
                   </div>
 
-                  {/* Mobile-Friendly Stacked Layout */}
                   <div className="block sm:hidden">
                     <div className="space-y-4">
                       <div className="grid grid-cols-1 gap-2">
@@ -190,7 +216,10 @@ const Appointment = () => {
                             }`}
                             value={appointment.status}
                             onChange={(e) =>
-                              handleUpdateStatus(appointment._id, e.target.value)
+                              handleUpdateStatus(
+                                appointment._id,
+                                e.target.value
+                              )
                             }
                           >
                             <option value="Pending">Pending</option>
@@ -205,7 +234,9 @@ const Appointment = () => {
                         <div className="flex justify-start sm:justify-center gap-2">
                           <button
                             className="text-red-500 py-1 px-3 border rounded-md hover:bg-red-200"
-                            onClick={() => handleDeleteAppointment(appointment._id)}
+                            onClick={() =>
+                              handleDeleteAppointment(appointment._id)
+                            }
                           >
                             Delete
                           </button>
@@ -217,7 +248,9 @@ const Appointment = () => {
               ))}
             </div>
           ) : (
-            <div className="text-center text-gray-500 mt-4">No Appointments Found!</div>
+            <div className="text-center text-gray-500 mt-4">
+              No Appointments Found!
+            </div>
           )}
         </div>
       )}

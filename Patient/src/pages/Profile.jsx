@@ -8,7 +8,7 @@ const Profile = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const [profileDetails, setProfileDetails] = useState({});
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); // Use useNavigate hook
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchProfileDetails = async () => {
@@ -44,7 +44,7 @@ const Profile = () => {
       });
       setIsAuthenticated(false);
       toast.success("Logout Successfully!");
-      navigate("/home"); // Use navigate to redirect
+      navigate("/home");
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -59,7 +59,7 @@ const Profile = () => {
     if (!dateString) return "N/A";
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };

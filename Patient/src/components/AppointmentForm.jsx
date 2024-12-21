@@ -35,7 +35,10 @@ const AppointmentForm = () => {
     const fetchDoctors = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get("http://localhost:3000/api/v1/user/doctors", { withCredentials: true });
+        const { data } = await axios.get(
+          "http://localhost:3000/api/v1/user/doctors",
+          { withCredentials: true }
+        );
         setDoctors(data.data);
       } catch (error) {
         toast.error("Failed to load doctors");
@@ -51,23 +54,27 @@ const AppointmentForm = () => {
     setSubmitting(true);
 
     try {
-      const { data } = await axios.post("http://localhost:3000/api/v1/appointment/post", {
-        firstName,
-        lastName,
-        email,
-        phone,
-        nic,
-        dob,
-        gender,
-        appointment_date: appointmentDate,
-        department,
-        doctorName,
-        hasVisited,
-        address,
-      }, {
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" },
-      });
+      const { data } = await axios.post(
+        "http://localhost:3000/api/v1/appointment/post",
+        {
+          firstName,
+          lastName,
+          email,
+          phone,
+          nic,
+          dob,
+          gender,
+          appointment_date: appointmentDate,
+          department,
+          doctorName,
+          hasVisited,
+          address,
+        },
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
       toast.success(data.message);
       resetFormFields();
@@ -160,7 +167,9 @@ const AppointmentForm = () => {
             />
           </div>
           <div>
-            <label className="block mb-1 text-sm font-medium">Date Of Birth</label>
+            <label className="block mb-1 text-sm font-medium">
+              Date Of Birth
+            </label>
             <input
               type="date"
               value={dob}
@@ -185,7 +194,9 @@ const AppointmentForm = () => {
             </select>
           </div>
           <div>
-            <label className="block mb-1 text-sm font-medium">Appointment Date</label>
+            <label className="block mb-1 text-sm font-medium">
+              Appointment Date
+            </label>
             <input
               type="date"
               value={appointmentDate}
@@ -196,15 +207,16 @@ const AppointmentForm = () => {
           </div>
         </div>
 
-        {/* Department and Doctor Selection */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
-            <label className="block mb-1 text-sm font-medium">Department Name</label>
+            <label className="block mb-1 text-sm font-medium">
+              Department Name
+            </label>
             <select
               value={department}
               onChange={(e) => {
                 setDepartment(e.target.value);
-                setDoctorName(""); // Reset doctor name on department change
+                setDoctorName(""); 
               }}
               required
               className="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring focus:ring-blue-400"
@@ -217,7 +229,9 @@ const AppointmentForm = () => {
             </select>
           </div>
           <div>
-            <label className="block mb-1 text-sm font-medium">Doctor Name</label>
+            <label className="block mb-1 text-sm font-medium">
+              Doctor Name
+            </label>
             {loading ? (
               <p className="text-gray-500">Loading doctors...</p>
             ) : (
@@ -241,7 +255,6 @@ const AppointmentForm = () => {
           </div>
         </div>
 
-        {/* Address and Visit History */}
         <div className="mb-4">
           <label className="block mb-1 text-sm font-medium">Address</label>
           <textarea
@@ -260,13 +273,17 @@ const AppointmentForm = () => {
             onChange={(e) => setHasVisited(e.target.checked)}
             className="mr-2"
           />
-          <label className="text-sm">Have you visited this doctor before?</label>
+          <label className="text-sm">
+            Have you visited this doctor before?
+          </label>
         </div>
 
         <button
           type="submit"
           disabled={submitting}
-          className={`w-full bg-blue-500 text-white font-bold py-2 rounded-lg ${submitting ? "opacity-50 cursor-not-allowed" : ""}`}
+          className={`w-full bg-blue-500 text-white font-bold py-2 rounded-lg ${
+            submitting ? "opacity-50 cursor-not-allowed" : ""
+          }`}
         >
           {submitting ? "Submitting..." : "Submit Appointment"}
         </button>

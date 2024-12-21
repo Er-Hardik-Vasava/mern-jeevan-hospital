@@ -12,7 +12,7 @@ const AppWrapper = () => {
   );
 };
 
-// Render the AppWrapper into the root element
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AppWrapper />

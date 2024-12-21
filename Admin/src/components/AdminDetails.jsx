@@ -39,14 +39,14 @@ const AdminDetails = () => {
     return <Navigate to="/login" />;
   }
 
-  // Format date function to DD/MM/YYYY
+  
   const formatDate = (dateString) => {
-    if (!dateString) return "N/A"; // Handle empty or invalid date
+    if (!dateString) return "N/A"; 
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const month = String(date.getMonth() + 1).padStart(2, '0'); 
     const year = date.getFullYear();
-    return `${day}/${month}/${year}`; // Format as DD/MM/YYYY
+    return `${day}/${month}/${year}`; 
   };
 
   return (

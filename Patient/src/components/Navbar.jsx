@@ -74,7 +74,7 @@ const Navbar = () => {
               {isOpen ? "Close" : "Menu"}
             </button>
 
-            {/* Desktop Navigation */}
+            
             <nav className="hidden md:flex md:space-x-6">
               <ul className="flex items-center space-x-6">
                 <li>
@@ -206,7 +206,7 @@ const Navbar = () => {
               {isOpen ? "Close" : "Menu"}
             </button>
 
-            {/* Desktop Navigation */}
+            
             <nav className="hidden md:flex md:space-x-6">
               <ul className="flex items-center space-x-6">
               <li>
@@ -275,7 +275,7 @@ const Navbar = () => {
               </ul>
             </nav>
 
-            {/* Mobile Navigation */}
+            
             <nav
               className={`fixed inset-0 bg-gray-800 bg-opacity-90 transform ${
                 isOpen ? "translate-x-0" : "-translate-x-full"

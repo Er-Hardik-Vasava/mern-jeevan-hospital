@@ -21,7 +21,7 @@ export const postAppointment = asyncHandler(async (req, res) => {
         doctorDepartment: department,
     });
 
-    // Check for doctor existence and conflicts
+    
     if (isConflict.length === 0) {
         return res.status(404).json({ success: false, message: "Doctor not found!" });
     }
